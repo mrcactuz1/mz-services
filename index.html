@@ -110,11 +110,58 @@
     text-shadow:
       0 0 14px var(--neon-white),
       0 0 28px var(--neon-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
   }
   .stat-label {
     font-size: 14px;
     color: var(--text-muted);
     margin-top: 12px;
+  }
+
+  /* Star icons container */
+  .stars {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .star {
+    color: var(--neon-yellow);
+    text-shadow:
+      0 0 6px var(--neon-yellow);
+    font-size: 32px;
+    line-height: 1;
+  }
+  .star.empty {
+    color: var(--text-muted);
+    text-shadow: none;
+  }
+
+  /* Rotating reviews container */
+  section.reviews-carousel {
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255 255 255 / 0.1);
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow:
+      0 0 20px var(--neon-white),
+      inset 0 0 15px rgba(255 255 255 / 0.15);
+    user-select: none;
+    font-style: italic;
+    color: var(--neon-white);
+    position: relative;
+    min-height: 120px;
+  }
+  .review-text {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .review-author {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--neon-yellow);
   }
 
   /* Responsive adjustments */
@@ -158,6 +205,15 @@
     .stat-label {
       font-size: 13px;
     }
+    .star {
+      font-size: 24px;
+    }
+    section.reviews-carousel {
+      max-width: 100%;
+      min-height: auto;
+      padding: 20px;
+      font-size: 16px;
+    }
   }
 </style>
 </head>
@@ -175,7 +231,10 @@
 
   <section class="stats" aria-label="Review statistics">
     <div class="stat-card" aria-live="polite" aria-atomic="true" role="region">
-      <div class="stat-value" id="avgStars">—</div>
+      <div class="stat-value" id="avgStars">
+        <span id="avgRatingValue">—</span>
+        <span class="stars" aria-label="Average star rating" role="img" aria-live="polite"></span>
+      </div>
       <div class="stat-label">Average Rating</div>
     </div>
     <div class="stat-card" aria-live="polite" aria-atomic="true" role="region">
@@ -183,7 +242,91 @@
       <div class="stat-label">Total Reviews</div>
     </div>
   </section>
-  <!-- Additional content like reviews or form can go below here -->
+
+  <section class="reviews-carousel" aria-live="polite" aria-atomic="true" role="region" aria-label="Customer reviews carousel">
+    <div class="review-text" id="reviewText">Loading reviews...</div>
+    <div class="review-author" id="reviewAuthor"></div>
+  </section>
 </main>
+
+<script>
+  // Data: Example reviews
+  const reviews = [
+    { text: "MZ Services did an outstanding job, quick and professional!", author: "Jane D." },
+    { text: "Reliable and affordable – highly recommend.", author: "Carlos M." },
+    { text: "Customer service was exceptional and fast.", author: "Aisha K." },
+    { text: "Great experience, will definitely use again!", author: "Liam T." },
+    { text: "Quality work and excellent communication.", author: "Sophia R." }
+  ];
+
+  const averageRating = 4.7;  // example average star rating
+  const totalReviews = 158;   // example total reviews count
+
+  // Update average rating number and stars
+  const avgRatingValue = document.getElementById('avgRatingValue');
+  const starsContainer = document.querySelector('#avgStars .stars');
+  const reviewCountEl = document.getElementById('reviewCount');
+
+  avgRatingValue.textContent = averageRating.toFixed(1);
+  reviewCountEl.textContent = totalReviews;
+
+  function createStarElements(rating) {
+    const stars = [];
+    // Full stars
+    let fullStars = Math.floor(rating);
+    // Half star check (not implemented visually here, could be improved)
+    const hasHalfStar = (rating - fullStars) >= 0.5;
+    // Empty stars
+    let emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    // Add full stars
+    for(let i=0; i < fullStars; i++) {
+      const star = document.createElement('span');
+      star.classList.add('star');
+      star.textContent = '★';
+      stars.push(star);
+    }
+    // Add half star as a half filled star symbol (optional)
+    if(hasHalfStar) {
+      const halfStar = document.createElement('span');
+      halfStar.classList.add('star');
+      halfStar.textContent = '⯨'; // Using a star symbol to represent half-star visually
+      stars.push(halfStar);
+    }
+    // Add empty stars
+    for(let i=0; i < emptyStars; i++) {
+      const emptyStar = document.createElement('span');
+      emptyStar.classList.add('star', 'empty');
+      emptyStar.textContent = '☆';
+      stars.push(emptyStar);
+    }
+    return stars;
+  }
+
+  // Append stars to container
+  createStarElements(averageRating).forEach(starEl => starsContainer.appendChild(starEl));
+
+  // Rotating reviews logic
+  let currentReviewIndex = 0;
+  const reviewTextEl = document.getElementById('reviewText');
+  const reviewAuthorEl = document.getElementById('reviewAuthor');
+
+  function showReview(index) {
+    const review = reviews[index];
+    reviewTextEl.textContent = `"${review.text}"`;
+    reviewAuthorEl.textContent = `— ${review.author}`;
+  }
+
+  function cycleReviews() {
+    showReview(currentReviewIndex);
+    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+  }
+
+  // Initial show
+  cycleReviews();
+
+  // Cycle every 5 seconds
+  setInterval(cycleReviews, 5000);
+</script>
 </body>
 </html>
