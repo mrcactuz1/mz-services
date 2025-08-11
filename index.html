@@ -232,7 +232,7 @@
   <p class="subtitle">We do your work for you</p>
   <div class="earnings" aria-label="Earnings and companies helped">
     <span><strong>$9.2 million</strong> earned</span>
-    <span><strong>150+</strong> companies helped</span>
+    <span><strong>Hire us for anything</strong></span>
   </div>
   <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com" aria-label="Send email to business inquiry">
     business.inquiry.mrcactuz@gmail.com
@@ -304,7 +304,7 @@
   ];
 
   const averageRating = 4.9;
-  const totalReviews = reviews.length;
+  const totalReviews = "1.2k"; // Updated review count text
 
   const avgRatingValue = document.getElementById('avgRatingValue');
   const starsContainer = document.querySelector('#avgStars .stars');
@@ -340,7 +340,6 @@
     return stars;
   }
 
-  // Append stars to container
   starsContainer.innerHTML = '';
   createStarElements(averageRating).forEach(starEl => starsContainer.appendChild(starEl));
 
