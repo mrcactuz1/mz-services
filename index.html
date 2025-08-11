@@ -164,6 +164,18 @@
     color: var(--neon-yellow);
   }
 
+  /* Smaller neon text below reviews */
+  .based-us {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--neon-white);
+    opacity: 0.6;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-shadow:
+      0 0 4px var(--neon-white);
+  }
+
   /* Responsive adjustments */
   @media (max-width: 480px) {
     main.wrap {
@@ -201,9 +213,6 @@
     }
     .stat-value {
       font-size: 48px;
-    }
-    .stat-label {
-      font-size: 13px;
     }
     .star {
       font-size: 24px;
@@ -246,23 +255,57 @@
   <section class="reviews-carousel" aria-live="polite" aria-atomic="true" role="region" aria-label="Customer reviews carousel">
     <div class="review-text" id="reviewText">Loading reviews...</div>
     <div class="review-author" id="reviewAuthor"></div>
+    <div class="based-us">Based in the US, security guaranteed.</div>
   </section>
 </main>
 
 <script>
-  // Data: Example reviews
   const reviews = [
-    { text: "MZ Services did an outstanding job, quick and professional!", author: "Jane D." },
-    { text: "Reliable and affordable – highly recommend.", author: "Carlos M." },
-    { text: "Customer service was exceptional and fast.", author: "Aisha K." },
-    { text: "Great experience, will definitely use again!", author: "Liam T." },
-    { text: "Quality work and excellent communication.", author: "Sophia R." }
+    {
+      text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%",
+      author: "CryptoPAC",
+      stars: 5
+    },
+    {
+      text: "Did everything promised quickly and efficiently, can’t wait to work with him more.",
+      author: "SocialPulse",
+      stars: 5
+    },
+    {
+      text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.",
+      author: "ProzyLLC",
+      stars: 5
+    },
+    {
+      text: "Helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else.",
+      author: "HAPPA",
+      stars: 5
+    },
+    {
+      text: "Did excellent and did everything and more that he was hired to do.",
+      author: "AnonYmous",
+      stars: 5
+    },
+    {
+      text: "Helped us code a very important part of our new game, could not have done it without his expertise.",
+      author: "BigGames",
+      stars: 5
+    },
+    {
+      text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.",
+      author: "RipperLA",
+      stars: 5
+    },
+    {
+      text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible.",
+      author: "HeuxHelp",
+      stars: 4.8
+    }
   ];
 
-  const averageRating = 4.7;  // example average star rating
-  const totalReviews = 158;   // example total reviews count
+  const averageRating = 4.9;
+  const totalReviews = reviews.length;
 
-  // Update average rating number and stars
   const avgRatingValue = document.getElementById('avgRatingValue');
   const starsContainer = document.querySelector('#avgStars .stars');
   const reviewCountEl = document.getElementById('reviewCount');
@@ -272,28 +315,22 @@
 
   function createStarElements(rating) {
     const stars = [];
-    // Full stars
     let fullStars = Math.floor(rating);
-    // Half star check (not implemented visually here, could be improved)
     const hasHalfStar = (rating - fullStars) >= 0.5;
-    // Empty stars
     let emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
-    // Add full stars
     for(let i=0; i < fullStars; i++) {
       const star = document.createElement('span');
       star.classList.add('star');
       star.textContent = '★';
       stars.push(star);
     }
-    // Add half star as a half filled star symbol (optional)
     if(hasHalfStar) {
       const halfStar = document.createElement('span');
       halfStar.classList.add('star');
-      halfStar.textContent = '⯨'; // Using a star symbol to represent half-star visually
+      halfStar.textContent = '⯨'; // half star symbol
       stars.push(halfStar);
     }
-    // Add empty stars
     for(let i=0; i < emptyStars; i++) {
       const emptyStar = document.createElement('span');
       emptyStar.classList.add('star', 'empty');
@@ -304,6 +341,7 @@
   }
 
   // Append stars to container
+  starsContainer.innerHTML = '';
   createStarElements(averageRating).forEach(starEl => starsContainer.appendChild(starEl));
 
   // Rotating reviews logic
@@ -322,10 +360,8 @@
     currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
   }
 
-  // Initial show
   cycleReviews();
 
-  // Cycle every 5 seconds
   setInterval(cycleReviews, 5000);
 </script>
 </body>
