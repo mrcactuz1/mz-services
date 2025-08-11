@@ -1,0 +1,449 @@
+<p><!DOCTYPE html><br />
+<html lang="en"><br />
+<head><br />
+<meta charset="UTF-8" /><br />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><br />
+<title>MZ Services — We do your work for you</title><br />
+<style><br />
+  :root {<br />
+    --bg: #000;<br />
+    --neon: #fff;<br />
+    --accent: #bfbfbf;<br />
+    --glass: rgba(255, 255, 255, 0.04);<br />
+    --glow: 0 0 18px rgba(255, 255, 255, 0.12), 0 0 30px rgba(255, 255, 255, 0.06);<br />
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;<br />
+  }<br />
+  * {<br />
+    box-sizing: border-box;<br />
+  }<br />
+  html, body {<br />
+    margin: 0; padding: 0; height: 100%;<br />
+    background: linear-gradient(180deg, #000 0%, #040404 100%);<br />
+    color: var(--neon);<br />
+    -webkit-font-smoothing: antialiased;<br />
+    -moz-osx-font-smoothing: grayscale;<br />
+    display: flex;<br />
+    justify-content: center;<br />
+    align-items: center;<br />
+    padding: 28px;<br />
+  }<br />
+  main.wrap {<br />
+    width: 100%;<br />
+    max-width: 980px;<br />
+    margin: 20px;<br />
+    padding: 26px;<br />
+    border-radius: 12px;<br />
+    background: transparent;<br />
+  }<br />
+  /* HERO */<br />
+  .hero {<br />
+    text-align: center;<br />
+    margin-bottom: 18px;<br />
+  }<br />
+  h1.neon {<br />
+    font-size: 72px;<br />
+    letter-spacing: 6px;<br />
+    margin: 0;<br />
+    font-weight: 700;<br />
+    color: var(--neon);<br />
+    text-shadow:<br />
+      0 0 6px rgba(255, 255, 255, 0.8),<br />
+      0 0 18px rgba(255, 255, 255, 0.35),<br />
+      0 0 40px rgba(255, 255, 255, 0.12);<br />
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));<br />
+  }<br />
+  p.tag {<br />
+    font-size: 16px;<br />
+    margin: 6px 0 4px;<br />
+    color: var(--accent);<br />
+    opacity: 0.95;<br />
+  }<br />
+  a.contact {<br />
+    display: inline-block;<br />
+    margin-top: 6px;<br />
+    color: var(--neon);<br />
+    background: transparent;<br />
+    padding: 6px 10px;<br />
+    border-radius: 8px;<br />
+    border: 1px solid rgba(255, 255, 255, 0.06);<br />
+    text-decoration: none;<br />
+    font-size: 14px;<br />
+    box-shadow: var(--glow);<br />
+  }<br />
+  /* STATS */<br />
+  section.stats {<br />
+    display: flex;<br />
+    justify-content: center;<br />
+    gap: 12px;<br />
+    flex-wrap: wrap;<br />
+    margin: 18px 0 22px;<br />
+  }<br />
+  .avg-card, .count-card {<br />
+    min-width: 150px;<br />
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));<br />
+    border-radius: 12px;<br />
+    padding: 18px 22px;<br />
+    border: 1px solid rgba(255,255,255,0.04);<br />
+    box-shadow: var(--glow);<br />
+    text-align: center;<br />
+  }<br />
+  .avg-value {<br />
+    font-size: 34px;<br />
+    font-weight: 700;<br />
+    color: var(--neon);<br />
+    letter-spacing: 1px;<br />
+  }<br />
+  .avg-label {<br />
+    margin-top: 6px;<br />
+    font-size: 12px;<br />
+    color: var(--accent);<br />
+  }<br />
+  /* REVIEWS SCROLLER */<br />
+  section.reviews-scroller {<br />
+    margin: 12px 0 22px;<br />
+    padding: 12px;<br />
+    border-radius: 10px;<br />
+    border: 1px solid rgba(255, 255, 255, 0.04);<br />
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);<br />
+    overflow: hidden;<br />
+  }<br />
+  div.ticker {<br />
+    display: flex;<br />
+    gap: 14px;<br />
+    align-items: center;<br />
+    white-space: nowrap;<br />
+    animation: scroll 30s linear infinite;<br />
+    padding-bottom: 4px;<br />
+  }<br />
+  div.ticker:hover {<br />
+    animation-play-state: paused;<br />
+  }<br />
+  div.ticker .item {<br />
+    display: inline-block;<br />
+    min-width: 260px;<br />
+    max-width: 420px;<br />
+    background: rgba(255,255,255,0.02);<br />
+    padding: 12px 14px;<br />
+    border-radius: 8px;<br />
+    border: 1px solid rgba(255,255,255,0.03);<br />
+  }<br />
+  .item .who {<br />
+    font-weight: 700;<br />
+    font-size: 14px;<br />
+    color: var(--neon);<br />
+  }<br />
+  .item .stars {<br />
+    color: #ffd86b;<br />
+    margin: 6px 0;<br />
+    font-weight: 700;<br />
+    font-size: 14px;<br />
+  }<br />
+  .item .txt {<br />
+    color: var(--accent);<br />
+    font-size: 13px;<br />
+    margin-top: 6px;<br />
+    white-space: normal;<br />
+  }<br />
+  @keyframes scroll {<br />
+    0% { transform: translateX(0); }<br />
+    100% { transform: translateX(-50%); }<br />
+  }<br />
+  /* FORM */<br />
+  section.submit {<br />
+    margin-top: 18px;<br />
+    padding: 14px;<br />
+    background: rgba(255,255,255,0.01);<br />
+    border-radius: 10px;<br />
+    border: 1px solid rgba(255,255,255,0.03);<br />
+  }<br />
+  section.submit h2 {<br />
+    margin: 0 0 8px 0;<br />
+    font-size: 18px;<br />
+    color: var(--neon);<br />
+  }<br />
+  .row {<br />
+    margin-bottom: 10px;<br />
+    display: flex;<br />
+    flex-direction: column;<br />
+    gap: 6px;<br />
+  }<br />
+  label {<br />
+    font-size: 13px;<br />
+    color: var(--accent);<br />
+  }<br />
+  input[type="text"], textarea {<br />
+    background: rgba(255,255,255,0.02);<br />
+    border: 1px solid rgba(255,255,255,0.04);<br />
+    padding: 10px;<br />
+    border-radius: 8px;<br />
+    color: var(--neon);<br />
+    outline: none;<br />
+  }<br />
+  textarea {<br />
+    min-height: 90px;<br />
+    resize: vertical;<br />
+  }<br />
+  .stars {<br />
+    display: flex;<br />
+    gap: 6px;<br />
+  }<br />
+  .stars input[type="radio"] {<br />
+    display: none;<br />
+  }<br />
+  .stars label {<br />
+    font-size: 22px;<br />
+    cursor: pointer;<br />
+    color: rgba(255, 255, 255, 0.12);<br />
+    user-select: none;<br />
+    transition: color .12s ease, transform .08s ease;<br />
+  }<br />
+  .stars input:checked ~ label,<br />
+  .stars label:hover,<br />
+  .stars label:hover ~ label {<br />
+    color: #ffd86b;<br />
+    transform: translateY(-2px);<br />
+  }<br />
+  button {<br />
+    background: transparent;<br />
+    border: 1px solid rgba(255,255,255,0.08);<br />
+    padding: 10px 14px;<br />
+    color: var(--neon);<br />
+    border-radius: 10px;<br />
+    cursor: pointer;<br />
+    font-weight: 600;<br />
+    box-shadow: var(--glow);<br />
+  }<br />
+  #status {<br />
+    margin-top: 8px;<br />
+    color: var(--accent);<br />
+    font-size: 13px;<br />
+    min-height: 18px;<br />
+  }<br />
+  /* FOOTER */<br />
+  footer.footer {<br />
+    margin-top: 18px;<br />
+    text-align: center;<br />
+    color: var(--accent);<br />
+    opacity: 0.9;<br />
+    font-size: 13px;<br />
+  }<br />
+  /* Responsive */<br />
+  @media (max-width:640px) {<br />
+    h1.neon { font-size: 44px; }<br />
+    div.ticker { animation-duration: 40s; }<br />
+    .avg-card, .count-card { min-width: 120px; }<br />
+  }<br />
+</style><br />
+</head><br />
+<body><br />
+<main class="wrap" role="main"><br />
+  <header class="hero" role="banner"><br />
+    <h1 class="neon">MZ Services</h1><br />
+    <p class="tag">We do your work for you</p><br />
+    <a class="contact" href="mailto:business.inquiry.mrcactuz@gmail.com">business.inquiry.mrcactuz@gmail.com</a><br />
+  </header></p>
+
+<p>  <section class="stats" aria-label="Reviews summary"><br />
+    <div class="avg-card" role="region" aria-live="polite" aria-atomic="true"><br />
+      <div class="avg-value" id="avgStars">—</div><br />
+      <div class="avg-label">Average Rating</div><br />
+    </div><br />
+    <div class="count-card" role="region" aria-live="polite" aria-atomic="true"><br />
+      <div id="reviewCount">0</div><br />
+      <div class="avg-label">Total Reviews</div><br />
+    </div><br />
+  </section></p>
+
+<p>  <section class="reviews-scroller" aria-label="Customer reviews"><br />
+    <div class="ticker" id="reviewTicker" aria-live="polite" aria-atomic="false" tabindex="0"><br />
+      <!-- review items inserted here --><br />
+    </div><br />
+  </section></p>
+
+<p>  <section class="submit" aria-label="Submit a review"><br />
+    <h2>Leave a review</h2><br />
+    <form id="reviewForm" autocomplete="on" novalidate><br />
+      <div class="row"><br />
+        <label for="name">Name</label><br />
+        <input id="name" name="name" type="text" required maxlength="40" placeholder="Your name" /><br />
+      </div><br />
+      <div class="row"><br />
+        <label>Stars</label><br />
+        <div class="stars" role="radiogroup" aria-label="Star rating"><br />
+          <input type="radio" name="rating" id="r1" value="1" required /><label for="r1">★</label><br />
+          <input type="radio" name="rating" id="r2" value="2" /><label for="r2">★</label><br />
+          <input type="radio" name="rating" id="r3" value="3" /><label for="r3">★</label><br />
+          <input type="radio" name="rating" id="r4" value="4" /><label for="r4">★</label><br />
+          <input type="radio" name="rating" id="r5" value="5" /><label for="r5">★</label><br />
+        </div><br />
+      </div><br />
+      <div class="row"><br />
+        <label for="text">Review (optional)</label><br />
+        <textarea id="text" name="text" maxlength="500" placeholder="Describe your experience (optional)"></textarea><br />
+      </div><br />
+      <div class="row"><br />
+        <button type="submit" id="submitBtn">Submit review</button><br />
+      </div><br />
+      <div id="status" role="status" aria-live="polite"></div><br />
+    </form><br />
+  </section></p>
+
+<p>  <footer class="footer"><br />
+    <small>© <span id="year"></span> MZ Services • built with neon vibes</small><br />
+  </footer><br />
+</main></p>
+
+<p><script><br />
+  // Preloaded review data</p>
+
+<p>  // Reviews with no text (count only)<br />
+  const countOnlyReviews = [<br />
+    ...Array(96).fill(5),<br />
+    ...Array(4).fill(4),<br />
+  ];</p>
+
+<p>  // Written reviews to show in ticker and count toward stats<br />
+  const writtenReviews = [<br />
+    {<br />
+      name: "CryptoPAC",<br />
+      rating: 5,<br />
+      text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%",<br />
+    },<br />
+    {<br />
+      name: "SocialPulse",<br />
+      rating: 5,<br />
+      text: "Did everything promised quickly and efficiently, can’t wait to work with him more.",<br />
+    },<br />
+    {<br />
+      name: "ProzyLLC",<br />
+      rating: 5,<br />
+      text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.",<br />
+    },<br />
+    {<br />
+      name: "HAPPA",<br />
+      rating: 5,<br />
+      text: "helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else",<br />
+    },<br />
+    {<br />
+      name: "AnonYmous",<br />
+      rating: 5,<br />
+      text: "did excellent and did everything and more that he was hired to do.",<br />
+    },<br />
+    {<br />
+      name: "BigGames",<br />
+      rating: 5,<br />
+      text: "Helped us code a very important part of our new game, could not have done it without his expertise.",<br />
+    },<br />
+    {<br />
+      name: "RipperLA",<br />
+      rating: 5,<br />
+      text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.",<br />
+    },<br />
+    {<br />
+      name: "HeuxHelp",<br />
+      rating: 4.8,<br />
+      text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible",<br />
+    },<br />
+  ];</p>
+
+<p>  // Elements<br />
+  const avgStarsEl = document.getElementById('avgStars');<br />
+  const countEl = document.getElementById('reviewCount');<br />
+  const tickerEl = document.getElementById('reviewTicker');<br />
+  const reviewForm = document.getElementById('reviewForm');<br />
+  const statusEl = document.getElementById('status');<br />
+  const yearEl = document.getElementById('year');<br />
+  yearEl.textContent = new Date().getFullYear();</p>
+
+<p>  // Current reviews arrays including dynamically added ones<br />
+  let countOnly = [...countOnlyReviews];<br />
+  let written = [...writtenReviews];</p>
+
+<p>  // Utility: sanitize text for HTML<br />
+  function escapeHtml(str) {<br />
+    if (!str) return '';<br />
+    return str.replace(/[&<>"']/g, (m) => {<br />
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[m];<br />
+    });<br />
+  }</p>
+
+<p>  // Render stars: supports decimals for 4.8 rating<br />
+  function renderStars(n) {<br />
+    const filledStars = Math.floor(n);<br />
+    const partialStar = n - filledStars;<br />
+    let starsHTML = '';<br />
+    for (let i = 0; i < filledStars; i++) starsHTML += '★';<br />
+    if (partialStar >= 0.75) starsHTML += '★';<br />
+    else if (partialStar >= 0.25) starsHTML += '⯪'; // partial star alternative (optional)<br />
+    const emptyStars = 5 - starsHTML.length;<br />
+    for (let i = 0; i < emptyStars; i++) starsHTML += '☆';<br />
+    return `<span style="color:#ffd86b">${starsHTML}</span><span style="color:rgba(255,255,255,0.12)">${'☆'.repeat(emptyStars)}</span>`;<br />
+  }</p>
+
+<p>  // Calculate and update stats display<br />
+  function updateStats() {<br />
+    const allRatings = countOnly.concat(written.map(r => r.rating));<br />
+    const totalCount = allRatings.length;<br />
+    const avg = totalCount ? (allRatings.reduce((a, b) => a + b, 0) / totalCount) : 0;<br />
+    avgStarsEl.textContent = totalCount ? avg.toFixed(1) + ' ★' : '—';<br />
+    countEl.textContent = totalCount;<br />
+  }</p>
+
+<p>  // Build ticker content from written reviews, duplicated for smooth scroll<br />
+  function updateTicker() {<br />
+    if (written.length === 0) {<br />
+      tickerEl.innerHTML = `<div class="item"><div class="who">No reviews yet</div><div class="stars">—</div><div class="txt">Be the first to leave a review!</div></div>`;<br />
+      return;<br />
+    }<br />
+    const nodes = written.map(r => {<br />
+      return `<div class="item"><br />
+        <div class="who">${escapeHtml(r.name)}</div><br />
+        <div class="stars">${renderStars(r.rating)}</div><br />
+        <div class="txt">${escapeHtml(r.text)}</div><br />
+      </div>`;<br />
+    });<br />
+    // Duplicate for seamless scroll<br />
+    tickerEl.innerHTML = nodes.join('') + nodes.join('');<br />
+  }</p>
+
+<p>  // Initial render<br />
+  updateStats();<br />
+  updateTicker();</p>
+
+<p>  // Handle review form submit<br />
+  reviewForm.addEventListener('submit', (e) => {<br />
+    e.preventDefault();<br />
+    statusEl.textContent = '';<br />
+    const formData = new FormData(reviewForm);<br />
+    const name = formData.get('name').trim();<br />
+    const rating = parseFloat(formData.get('rating'));<br />
+    const text = formData.get('text').trim();</p>
+
+<p>    if (!name) {<br />
+      statusEl.textContent = 'Please enter your name.';<br />
+      statusEl.style.color = '#ff8b8b';<br />
+      return;<br />
+    }<br />
+    if (!rating || rating < 1 || rating > 5) {<br />
+      statusEl.textContent = 'Please select a star rating between 1 and 5.';<br />
+      statusEl.style.color = '#ff8b8b';<br />
+      return;<br />
+    }</p>
+
+<p>    // Add review to arrays and update UI<br />
+    if (text.length > 0) {<br />
+      written.push({ name, rating, text });<br />
+    } else {<br />
+      countOnly.push(rating);<br />
+    }</p>
+
+<p>    updateStats();<br />
+    updateTicker();</p>
+
+<p>    statusEl.textContent = 'Thanks — your review was added locally!';<br />
+    statusEl.style.color = '#bfbfbf';<br />
+    reviewForm.reset();<br />
+  });<br />
+</script><br />
+</body><br />
+</html></p>
