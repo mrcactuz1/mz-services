@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MZ Services — We do your work for you</title>
+<style>
+  :root {
+    --bg: #000;
+    --neon: #fff;
+    --accent: #bfbfbf;
+    --glass: rgba(255, 255, 255, 0.04);
+    --glow: 0 0 18px rgba(255, 255, 255, 0.12), 0 0 30px rgba(255, 255, 255, 0.06);
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: linear-gradient(180deg, #000 0%, #040404 100%);
+    color: var(--neon);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px;
+  }
+  main.wrap {
+    width: 100%;
+    max-width: 980px;
+    margin: 20px;
+    padding: 26px;
+    border-radius: 12px;
+    background: transparent;
+  }
+  /* HERO */
+  .hero {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  h1.neon {
+    font-size: 72px;
+    letter-spacing: 6px;
+    margin: 0;
+    font-weight: 700;
+    color: var(--neon);
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.8),
+      0 0 18px rgba(255, 255, 255, 0.35),
+      0 0 40px rgba(255, 255, 255, 0.12);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+  }
+  p.tag {
+    font-size: 16px;
+    margin: 6px 0 4px;
+    color: var(--accent);
+    opacity: 0.95;
+  }
+  a.contact {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--neon);
+    background: transparent;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: var(--glow);
+  }
+  /* STATS */
+  section.stats {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 22px;
+  }
+  .avg-card, .count-card {
+    min-width: 150px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 12px;
+    padding: 18px 22px;
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: var(--glow);
+    text-align: center;
+  }
+  .avg-value {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--neon);
+    letter-spacing: 1px;
+  }
+  .avg-label {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  /* REVIEWS SCROLLER */
+  section.reviews-scroller {
+    margin: 12px 0 22px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    overflow: hidden;
+  }
+  div.ticker {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    padding-bottom: 4px;
+  }
+  div.ticker:hover {
+    animation-play-state: paused;
+  }
+  div.ticker .item {
+    display: inline-block;
+    min-width: 260px;
+    max-width: 420px;
+    background: rgba(255,255,255,0.02);
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+  .item .who {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--neon);
+  }
+  .item .stars {
+    color: #ffd86b;
+    margin: 6px 0;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .item .txt {
+    color: var(--accent);
+    font-size: 13px;
+    margin-top: 6px;
+    white-space: normal;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /* FORM */
+  section.submit {
+    margin-top: 18px;
+    padding: 14px;
+    background: rgba(255,255,255,0.01);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+  section.submit h2 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: var(--neon);
+  }
+  .row {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  label {
+    font-size: 13px;
+    color: var(--accent);
+  }
+  input[type="text"], textarea {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--neon);
+    outline: none;
+  }
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+  .stars {
+    display: flex;
+    gap: 6px;
+  }
+  .stars input[type="radio"] {
+    display: none;
+  }
+  .stars label {
+    font-size: 22px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.12);
+    user-select: none;
+    transition: color .12s ease, transform .08s ease;
+  }
+  .stars input:checked ~ label,
+  .stars label:hover,
+  .stars label:hover ~ label {
+    color: #ffd86b;
+    transform: translateY(-2px);
+  }
+  button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    color: var(--neon);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--glow);
+  }
+  #status {
+    margin-top: 8px;
+    color: var(--accent);
+    font-size: 13px;
+    min-height: 18px;
+  }
+  /* FOOTER */
+  footer.footer {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--accent);
+    opacity: 0.9;
+    font-size: 13px;
+  }
+  /* Responsive */
+  @media (max-width:640px) {
+    h1.neon { font-size: 44px; }
+    div.ticker { animation-duration: 40s; }
+    .avg-card, .count-card { min-width: 120px; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap" role="main">
+  <header class="hero" role="banner">
+    <h1 class="neon">MZ Services</h1>
+    <p class="tag">We do your work for you</p>
+    <a class="contact" href="mailto:business.inquiry.mrcactuz@gmail.com">business.inquiry.mrcactuz@gmail.com</a>
+  </header>
+
+  <section class="stats" aria-label="Reviews summary">
+    <div class="avg-card" role="region" aria-live="polite" aria-atomic="true">
+      <div class="avg-value" id="avgStars">—</div>
+      <div class="avg-label">Average Rating</div>
+    </div>
+    <div class="count-card" role="region" aria-live="polite" aria-atomic="true">
+      <div id="reviewCount">0</div>
+      <div class="avg-label">Total Reviews</div>
+    </div>
+  </section>
+
+  <section class="reviews-scroller" aria-label="Customer reviews">
+    <div class="ticker" id="reviewTicker" aria-live="polite" aria-atomic="false" tabindex="0">
+      <!-- review items inserted here -->
+    </div>
+  </section>
+
+  <section class="submit" aria-label="Submit a review">
+    <h2>Leave a review</h2>
+    <form id="reviewForm" autocomplete="on" novalidate>
+      <div class="row">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required maxlength="40" placeholder="Your name" />
+      </div>
+      <div class="row">
+        <label>Stars</label>
+        <div class="stars" role="radiogroup" aria-label="Star rating">
+          <input type="radio" name="rating" id="r1" value="1" required /><label for="r1">★</label>
+          <input type="radio" name="rating" id="r2" value="2" /><label for="r2">★</label>
+          <input type="radio" name="rating" id="r3" value="3" /><label for="r3">★</label>
+          <input type="radio" name="rating" id="r4" value="4" /><label for="r4">★</label>
+          <input type="radio" name="rating" id="r5" value="5" /><label for="r5">★</label>
+        </div>
+      </div>
+      <div class="row">
+        <label for="text">Review (optional)</label>
+        <textarea id="text" name="text" maxlength="500" placeholder="Describe your experience (optional)"></textarea>
+      </div>
+      <div class="row">
+        <button type="submit" id="submitBtn">Submit review</button>
+      </div>
+      <div id="status" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> MZ Services • built with neon vibes</small>
+  </footer>
+</main>
+
+<script>
+  // Preloaded review data
+
+  // Reviews with no text (count only)
+  const countOnlyReviews = [
+    ...Array(96).fill(5),
+    ...Array(4).fill(4),
+  ];
+
+  // Written reviews to show in ticker and count toward stats
+  const writtenReviews = [
+    {
+      name: "CryptoPAC",
+      rating: 5,
+      text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%",
+    },
+    {
+      name: "SocialPulse",
+      rating: 5,
+      text: "Did everything promised quickly and efficiently, can’t wait to work with him more.",
+    },
+    {
+      name: "ProzyLLC",
+      rating: 5,
+      text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.",
+    },
+    {
+      name: "HAPPA",
+      rating: 5,
+      text: "helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else",
+    },
+    {
+      name: "AnonYmous",
+      rating: 5,
+      text: "did excellent and did everything and more that he was hired to do.",
+    },
+    {
+      name: "BigGames",
+      rating: 5,
+      text: "Helped us code a very important part of our new game, could not have done it without his expertise.",
+    },
+    {
+      name: "RipperLA",
+      rating: 5,
+      text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.",
+    },
+    {
+      name: "HeuxHelp",
+      rating: 4.8,
+      text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible",
+    },
+  ];
+
+  // Elements
+  const avgStarsEl = document.getElementById('avgStars');
+  const countEl = document.getElementById('reviewCount');
+  const tickerEl = document.getElementById('reviewTicker');
+  const reviewForm = document.getElementById('reviewForm');
+  const statusEl = document.getElementById('status');
+  const yearEl = document.getElementById('year');
+  yearEl.textContent = new Date().getFullYear();
+
+  // Current reviews arrays including dynamically added ones
+  let countOnly = [...countOnlyReviews];
+  let written = [...writtenReviews];
+
+  // Utility: sanitize text for HTML
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, (m) => {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[m];
+    });
+  }
+
+  // Render stars: supports decimals for 4.8 rating
+  function renderStars(n) {
+    const filledStars = Math.floor(n);
+    const partialStar = n - filledStars;
+    let starsHTML = '';
+    for (let i = 0; i < filledStars; i++) starsHTML += '★';
+    if (partialStar >= 0.75) starsHTML += '★';
+    else if (partialStar >= 0.25) starsHTML += '⯪'; // partial star alternative (optional)
+    const emptyStars = 5 - starsHTML.length;
+    for (let i = 0; i < emptyStars; i++) starsHTML += '☆';
+    return `<span style="color:#ffd86b">${starsHTML}</span><span style="color:rgba(255,255,255,0.12)">${'☆'.repeat(emptyStars)}</span>`;
+  }
+
+  // Calculate and update stats display
+  function updateStats() {
+    const allRatings = countOnly.concat(written.map(r => r.rating));
+    const totalCount = allRatings.length;
+    const avg = totalCount ? (allRatings.reduce((a, b) => a + b, 0) / totalCount) : 0;
+    avgStarsEl.textContent = totalCount ? avg.toFixed(1) + ' ★' : '—';
+    countEl.textContent = totalCount;
+  }
+
+  // Build ticker content from written reviews, duplicated for smooth scroll
+  function updateTicker() {
+    if (written.length === 0) {
+      tickerEl.innerHTML = `<div class="item"><div class="who">No reviews yet</div><div class="stars">—</div><div class="txt">Be the first to leave a review!</div></div>`;
+      return;
+    }
+    const nodes = written.map(r => {
+      return `<div class="item">
+        <div class="who">${escapeHtml(r.name)}</div>
+        <div class="stars">${renderStars(r.rating)}</div>
+        <div class="txt">${escapeHtml(r.text)}</div>
+      </div>`;
+    });
+    // Duplicate for seamless scroll
+    tickerEl.innerHTML = nodes.join('') + nodes.join('');
+  }
+
+  // Initial render
+  updateStats();
+  updateTicker();
+
+  // Handle review form submit
+  reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    statusEl.textContent = '';
+    const formData = new FormData(reviewForm);
+    const name = formData.get('name').trim();
+    const rating = parseFloat(formData.get('rating'));
+    const text = formData.get('text').trim();
+
+    if (!name) {
+      statusEl.textContent = 'Please enter your name.';
+      statusEl.style.color = '#ff8b8b';
+      return;
+    }
+    if (!rating || rating < 1 || rating > 5) {
+      statusEl.textContent = 'Please select a star rating between 1 and 5.';
+      statusEl.style.color = '#ff8b8b';
+      return;
+    }
+
+    // Add review to arrays and update UI
+    if (text.length > 0) {
+      written.push({ name, rating, text });
+    } else {
+      countOnly.push(rating);
+    }
+
+    updateStats();
+    updateTicker();
+
+    statusEl.textContent = 'Thanks — your review was added locally!';
+    statusEl.style.color = '#bfbfbf';
+    reviewForm.reset();
+  });
+</script>
+</body>
+</html>
