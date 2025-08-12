@@ -1,228 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MZ Services — We do your work for you</title>
 <style>
-  /* Colors and fonts */
-  :root {
-    --bg: #000000;
-    --neon-white: #fff;
-    --neon-glow: #e0e0e0;
-    --neon-yellow: #ffd86b;
-    --text-muted: #bfbfbf;
+  :root{
+    --bg:#000;
+    --neon-white:#fff;
+    --neon-yellow:#ffd86b;
+    --muted:#bfbfbf;
+    --card-bg: rgba(255 255 255 / 0.06);
   }
-  body, html {
-    margin: 0; padding: 0;
-    background-color: var(--bg);
-    color: var(--neon-white);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--neon-white);font-family:"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  main.wrap{max-width:920px;margin:24px auto;padding:0 24px 48px;text-align:center}
+  h1.neon{font-size:56px;font-weight:900;letter-spacing:.12em;line-height:1.05;margin:0 0 8px;color:var(--neon-white);text-shadow:0 0 10px var(--neon-white),0 0 20px var(--neon-white),0 0 30px var(--neon-white)}
+  p.subtitle{font-size:14px;color:var(--muted);font-weight:600;margin:0 0 18px}
+  .earnings{font-weight:700;margin-bottom:22px;color:var(--neon-white);text-shadow:0 0 6px var(--neon-white)}
+  .earnings span{display:block;margin:6px 0}
+  a.email-contact{display:inline-block;background:var(--neon-white);color:#000;padding:12px 24px;border-radius:16px;font-weight:700;text-decoration:none;margin-bottom:28px;box-shadow:0 0 10px var(--neon-white)}
+  a.email-contact:hover{background:#e6e6e6}
+  section.stats{display:flex;gap:28px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+  .stat-card{background:var(--card-bg);border-radius:18px;padding:22px 26px;width:180px;box-shadow:0 0 20px rgba(255,255,255,0.04) inset, 0 0 18px rgba(255,255,255,0.03);user-select:none}
+  .stat-value{font-size:44px;font-weight:900;color:var(--neon-white);display:flex;align-items:center;justify-content:center;gap:8px;text-shadow:0 0 14px rgba(255,255,255,0.08)}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:8px}
+  .stars{display:inline-flex;gap:4px}
+  .star{font-size:28px;color:var(--neon-yellow);text-shadow:0 0 6px var(--neon-yellow);line-height:1}
+  .star.empty{color:var(--muted);text-shadow:none}
+  .reviews-carousel{max-width:760px;margin:0 auto;background:var(--card-bg);border-radius:16px;padding:20px 24px;box-shadow:0 0 20px rgba(255,255,255,0.04);min-height:120px;font-style:italic;position:relative}
+  .review-text{font-size:18px;margin-bottom:10px;line-height:1.35}
+  .review-author{font-size:14px;font-weight:700;color:var(--neon-yellow)}
+  .based-us{margin-top:12px;font-size:13px;color:var(--neon-white);opacity:.7;font-weight:600;letter-spacing:.03em;text-shadow:0 0 4px rgba(255,255,255,0.04)}
+  /* Services section */
+  .services-wrap{margin-top:30px;text-align:left}
+  .services-heading{font-size:20px;font-weight:900;letter-spacing:.08em;margin-bottom:14px;color:var(--neon-white);text-shadow:0 0 8px rgba(255,255,255,0.04)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .service-card{background:rgba(255 255 255 / 0.03);border-radius:12px;padding:14px 16px;color:var(--neon-white);box-shadow:0 0 18px rgba(255,255,255,0.02);min-height:110px;display:flex;flex-direction:column;justify-content:center}
+  .service-title{font-weight:800;margin-bottom:8px;font-size:15px}
+  .service-desc{font-size:13px;color:var(--muted);line-height:1.25}
+  /* accent pill for premium feel */
+  .premium-pill{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,216,107,0.12), rgba(255,216,107,0.06));color:var(--neon-yellow);font-weight:700;font-size:12px}
+  /* Responsive */
+  @media (max-width:980px){
+    .services-grid{grid-template-columns:repeat(2,1fr)}
+    main.wrap{padding:0 18px}
   }
-  /* Container */
-  main.wrap {
-    max-width: 440px;
-    margin: 24px auto 48px;
-    padding: 0 24px;
-    text-align: center;
-  }
-  /* Neon heading */
-  h1.neon {
-    font-size: 56px;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    line-height: 1.1;
-    color: var(--neon-white);
-    text-shadow:
-      0 0 10px var(--neon-white),
-      0 0 20px var(--neon-white),
-      0 0 30px var(--neon-white),
-      0 0 40px var(--neon-white);
-    margin: 0 0 8px;
-  }
-  /* Subtitle under h1 */
-  p.subtitle {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin: 0 0 28px 0;
-    letter-spacing: 0.06em;
-  }
-  /* Earnings info below subtitle */
-  .earnings {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 36px;
-    color: var(--neon-white);
-    text-shadow:
-      0 0 6px var(--neon-white);
-  }
-  .earnings span {
-    display: block;
-    margin: 6px 0;
-  }
-  /* Email contact button */
-  a.email-contact {
-    display: inline-block;
-    background: var(--neon-white);
-    color: #000;
-    padding: 12px 24px;
-    border-radius: 16px;
-    font-weight: 700;
-    text-decoration: none;
-    margin-bottom: 40px;
-    box-shadow:
-      0 0 10px var(--neon-white),
-      0 0 25px var(--neon-white);
-    transition: background-color 0.25s ease;
-  }
-  a.email-contact:hover,
-  a.email-contact:focus {
-    background-color: #e6e6e6;
-    outline: none;
-  }
-
-  /* Stats container */
-  section.stats {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    margin-bottom: 36px;
-  }
-  /* Each stat box */
-  .stat-card {
-    background: rgba(255 255 255 / 0.1);
-    border-radius: 20px;
-    padding: 30px 28px;
-    width: 140px;
-    box-shadow:
-      0 0 20px var(--neon-white),
-      inset 0 0 15px rgba(255 255 255 / 0.15);
-    user-select: none;
-  }
-  .stat-value {
-    font-size: 56px;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    color: var(--neon-white);
-    text-shadow:
-      0 0 14px var(--neon-white),
-      0 0 28px var(--neon-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-  }
-  .stat-label {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-top: 12px;
-  }
-
-  /* Star icons container */
-  .stars {
-    display: inline-flex;
-    gap: 3px;
-  }
-  .star {
-    color: var(--neon-yellow);
-    text-shadow:
-      0 0 6px var(--neon-yellow);
-    font-size: 32px;
-    line-height: 1;
-  }
-  .star.empty {
-    color: var(--text-muted);
-    text-shadow: none;
-  }
-
-  /* Rotating reviews container */
-  section.reviews-carousel {
-    max-width: 400px;
-    margin: 0 auto;
-    background: rgba(255 255 255 / 0.1);
-    border-radius: 20px;
-    padding: 24px 28px;
-    box-shadow:
-      0 0 20px var(--neon-white),
-      inset 0 0 15px rgba(255 255 255 / 0.15);
-    user-select: none;
-    font-style: italic;
-    color: var(--neon-white);
-    position: relative;
-    min-height: 120px;
-  }
-  .review-text {
-    font-size: 18px;
-    margin-bottom: 14px;
-  }
-  .review-author {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--neon-yellow);
-  }
-
-  /* Smaller neon text below reviews */
-  .based-us {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--neon-white);
-    opacity: 0.6;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-shadow:
-      0 0 4px var(--neon-white);
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    main.wrap {
-      max-width: 320px;
-      padding: 0 16px;
-      margin-top: 16px;
-    }
-    h1.neon {
-      font-size: 40px;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-    p.subtitle {
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-    .earnings {
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-    a.email-contact {
-      padding: 10px 20px;
-      font-size: 14px;
-      margin-bottom: 28px;
-    }
-    section.stats {
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 28px;
-    }
-    .stat-card {
-      width: 100%;
-      max-width: 280px;
-      padding: 24px 20px;
-    }
-    .stat-value {
-      font-size: 48px;
-    }
-    .star {
-      font-size: 24px;
-    }
-    section.reviews-carousel {
-      max-width: 100%;
-      min-height: auto;
-      padding: 20px;
-      font-size: 16px;
-    }
+  @media (max-width:560px){
+    h1.neon{font-size:40px}
+    .services-grid{grid-template-columns:1fr}
+    .stat-card{width:100%;max-width:380px}
+    .stat-value{font-size:36px}
+    .star{font-size:22px}
+    .review-text{font-size:16px}
   }
 </style>
 </head>
@@ -230,137 +59,168 @@
 <main class="wrap" role="main" aria-label="MZ Services main content">
   <h1 class="neon" aria-label="M Z Services title">MZ Services</h1>
   <p class="subtitle">We do your work for you</p>
-  <div class="earnings" aria-label="Earnings and companies helped">
+
+  <div class="earnings" aria-label="Earnings and hire">
     <span><strong>$9.2 million</strong> earned</span>
     <span><strong>Hire us for anything</strong></span>
   </div>
+
   <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com" aria-label="Send email to business inquiry">
     business.inquiry.mrcactuz@gmail.com
   </a>
 
   <section class="stats" aria-label="Review statistics">
-    <div class="stat-card" aria-live="polite" aria-atomic="true" role="region">
+    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
       <div class="stat-value" id="avgStars">
         <span id="avgRatingValue">—</span>
-        <span class="stars" aria-label="Average star rating" role="img" aria-live="polite"></span>
+        <span class="stars" aria-hidden="false" aria-label="Average star rating"></span>
       </div>
       <div class="stat-label">Average Rating</div>
     </div>
-    <div class="stat-card" aria-live="polite" aria-atomic="true" role="region">
+
+    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
       <div class="stat-value" id="reviewCount">—</div>
       <div class="stat-label">Total Reviews</div>
     </div>
   </section>
 
-  <section class="reviews-carousel" aria-live="polite" aria-atomic="true" role="region" aria-label="Customer reviews carousel">
+  <section class="reviews-carousel" role="region" aria-live="polite" aria-atomic="true" aria-label="Customer reviews carousel">
     <div class="review-text" id="reviewText">Loading reviews...</div>
     <div class="review-author" id="reviewAuthor"></div>
     <div class="based-us">Based in the US, security guaranteed.</div>
   </section>
+
+  <!-- Premium Services -->
+  <div class="services-wrap" aria-label="Premium services">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div class="services-heading">Premium Services</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:8px">Elite, high-value projects. Confidential engagements available.</div>
+      </div>
+      <div class="premium-pill" aria-hidden="true">High-end • Enterprise</div>
+    </div>
+
+    <div class="services-grid" role="list">
+      <div class="service-card" role="listitem">
+        <div class="service-title">Elite Software & Game Engine Development</div>
+        <div class="service-desc">Custom engines and scalable systems for AAA games or enterprise platforms — optimized for performance, reliability, and security.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Brand Domination Campaigns</div>
+        <div class="service-desc">Full-funnel marketing to dramatically increase sales and market share: influencer strategy, paid media orchestration, viral creative.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Corporate Security & Data Protection</div>
+        <div class="service-desc">End-to-end security: infrastructure hardening, secure architecture, incident response planning and monitoring for high-value assets.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Confidential “Black Box” Solutions</div>
+        <div class="service-desc">Discrete, results-focused technical projects executed with minimal footprint and strict confidentiality protocols.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">AI-Powered Business Automation</div>
+        <div class="service-desc">Custom AI systems to automate complex operations, drive efficiencies, and scale capabilities across large organizations.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Crisis Recovery & Digital Rescue</div>
+        <div class="service-desc">Emergency recovery for critical systems — data restoration, platform rebuilds, and fast operational recovery under tight SLAs.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">International Market Penetration</div>
+        <div class="service-desc">Region-specific growth strategies, localization, and ad operations to launch and scale brands across new global markets.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Custom Blockchain & FinTech Systems</div>
+        <div class="service-desc">Secure crypto platforms, smart contracts, and payment gateways built for institutional use and regulatory considerations.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">High-Volume E-Commerce Scaling</div>
+        <div class="service-desc">Turnstores into enterprise operations: automated fulfillment, high-converting funnels, and growth engineering for large volume sales.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Strategic Long-Term Partnerships</div>
+        <div class="service-desc">Ongoing CTO-level support, product strategy, and engineering partnerships for sustained growth and technical leadership.</div>
+      </div>
+
+      <div class="service-card" role="listitem">
+        <div class="service-title">Authorized Covert Technical Operations</div>
+        <div class="service-desc">Highly specialized, confidential technical services (authorized penetration testing, secure forensic analysis, and private-coded solutions) conducted legally and ethically under NDA and explicit permission.</div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <script>
+  // Reviews provided by you
   const reviews = [
-    {
-      text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%",
-      author: "CryptoPAC",
-      stars: 5
-    },
-    {
-      text: "Did everything promised quickly and efficiently, can’t wait to work with him more.",
-      author: "SocialPulse",
-      stars: 5
-    },
-    {
-      text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.",
-      author: "ProzyLLC",
-      stars: 5
-    },
-    {
-      text: "Helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else.",
-      author: "HAPPA",
-      stars: 5
-    },
-    {
-      text: "Did excellent and did everything and more that he was hired to do.",
-      author: "AnonYmous",
-      stars: 5
-    },
-    {
-      text: "Helped us code a very important part of our new game, could not have done it without his expertise.",
-      author: "BigGames",
-      stars: 5
-    },
-    {
-      text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.",
-      author: "RipperLA",
-      stars: 5
-    },
-    {
-      text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible.",
-      author: "HeuxHelp",
-      stars: 4.8
-    }
+    { text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%", author: "CryptoPAC", stars: 5 },
+    { text: "Did everything promised quickly and efficiently, can’t wait to work with him more.", author: "SocialPulse", stars: 5 },
+    { text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.", author: "ProzyLLC", stars: 5 },
+    { text: "Helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else.", author: "HAPPA", stars: 5 },
+    { text: "Did excellent and did everything and more that he was hired to do.", author: "AnonYmous", stars: 5 },
+    { text: "Helped us code a very important part of our new game, could not have done it without his expertise.", author: "BigGames", stars: 5 },
+    { text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.", author: "RipperLA", stars: 5 },
+    { text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible.", author: "HeuxHelp", stars: 4.8 }
   ];
 
   const averageRating = 4.9;
-  const totalReviews = "1.2k"; // Updated review count text
+  const totalReviews = "1.2k";
 
+  // Elements
   const avgRatingValue = document.getElementById('avgRatingValue');
   const starsContainer = document.querySelector('#avgStars .stars');
   const reviewCountEl = document.getElementById('reviewCount');
-
-  avgRatingValue.textContent = averageRating.toFixed(1);
-  reviewCountEl.textContent = totalReviews;
-
-  function createStarElements(rating) {
-    const stars = [];
-    let fullStars = Math.floor(rating);
-    const hasHalfStar = (rating - fullStars) >= 0.5;
-    let emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-    for(let i=0; i < fullStars; i++) {
-      const star = document.createElement('span');
-      star.classList.add('star');
-      star.textContent = '★';
-      stars.push(star);
-    }
-    if(hasHalfStar) {
-      const halfStar = document.createElement('span');
-      halfStar.classList.add('star');
-      halfStar.textContent = '⯨'; // half star symbol
-      stars.push(halfStar);
-    }
-    for(let i=0; i < emptyStars; i++) {
-      const emptyStar = document.createElement('span');
-      emptyStar.classList.add('star', 'empty');
-      emptyStar.textContent = '☆';
-      stars.push(emptyStar);
-    }
-    return stars;
-  }
-
-  starsContainer.innerHTML = '';
-  createStarElements(averageRating).forEach(starEl => starsContainer.appendChild(starEl));
-
-  // Rotating reviews logic
-  let currentReviewIndex = 0;
   const reviewTextEl = document.getElementById('reviewText');
   const reviewAuthorEl = document.getElementById('reviewAuthor');
 
-  function showReview(index) {
-    const review = reviews[index];
-    reviewTextEl.textContent = `"${review.text}"`;
-    reviewAuthorEl.textContent = `— ${review.author}`;
+  // Update numeric displays
+  avgRatingValue.textContent = averageRating.toFixed(1);
+  reviewCountEl.textContent = totalReviews;
+
+  // Build star visuals (full / half / empty)
+  function createStarElements(rating){
+    const frag = document.createDocumentFragment();
+    let fullStars = Math.floor(rating);
+    const hasHalf = (rating - fullStars) >= 0.5;
+    let emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+    for(let i=0;i<fullStars;i++){
+      const s = document.createElement('span'); s.className='star'; s.textContent='★'; frag.appendChild(s);
+    }
+    if(hasHalf){
+      const s = document.createElement('span'); s.className='star'; s.textContent='⯨'; frag.appendChild(s);
+    }
+    for(let i=0;i<emptyStars;i++){
+      const s = document.createElement('span'); s.className='star empty'; s.textContent='☆'; frag.appendChild(s);
+    }
+    return frag;
   }
 
-  function cycleReviews() {
-    showReview(currentReviewIndex);
-    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+  starsContainer.innerHTML = '';
+  starsContainer.appendChild(createStarElements(averageRating));
+
+  // Rotating reviews
+  let idx = 0;
+  function showReview(i){
+    const r = reviews[i];
+    reviewTextEl.textContent = `"${r.text}"`;
+    reviewAuthorEl.textContent = `— ${r.author}`;
+  }
+  function cycleReviews(){
+    showReview(idx);
+    idx = (idx + 1) % reviews.length;
   }
 
+  // initial and interval
   cycleReviews();
-
   setInterval(cycleReviews, 5000);
 </script>
 </body>
