@@ -1,382 +1,333 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MZ Services — We do your work for you</title>
 <style>
-  /* --------------------
-     Theme variables
-     -------------------- */
   :root{
-    --bg:#050507;
-    --neon-white:#ffffff;
-    --neon-muted:#bfbfbf;
+    --bg:#000;
+    --neon-white:#fff;
     --neon-yellow:#ffd86b;
-    --card-bg:rgba(255 255 255 / 0.04);
-    --glass: rgba(255 255 255 / 0.06);
-    --transition: 350ms cubic-bezier(.2,.9,.3,1);
+    --muted:#bfbfbf;
+    --card-bg: rgba(255 255 255 / 0.06);
+    --star-size: 28px;
   }
-
-  /* Subtle animated gradient background */
-  html,body{height:100%;margin:0}
-  body{
-    font-family:"Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
-    background: linear-gradient(120deg,#020204 0%, #09090a 30%, #0b0b0d 60%);
+  html,body{
+    height:100%;margin:0;background:var(--bg);color:var(--neon-white);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  main.wrap{
+    max-width:920px;margin:24px auto;padding:0 24px 48px;text-align:center;
+  }
+  h1.neon{
+    font-size:56px;font-weight:900;letter-spacing:.12em;line-height:1.05;margin:0 0 8px;
     color:var(--neon-white);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    position:relative;
-    overflow-y:auto;
+    text-shadow:0 0 10px var(--neon-white),0 0 20px var(--neon-white),0 0 30px var(--neon-white);
   }
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:0;
-    background:linear-gradient(60deg, rgba(255,216,107,0.02), rgba(255,255,255,0.01) 40%, rgba(255,216,107,0.015));
-    filter: blur(38px);
-    transform: translateZ(0);
-    animation: bgShift 12s linear infinite;
-    pointer-events:none;
+  p.subtitle{
+    font-size:14px;color:var(--muted);font-weight:600;margin:0 0 18px;
   }
-  @keyframes bgShift{
-    0%{transform:translateX(-10%);}
-    50%{transform:translateX(10%);}
-    100%{transform:translateX(-10%);}
+  .earnings{
+    font-weight:700;margin-bottom:22px;color:var(--neon-white);
+    text-shadow:0 0 6px var(--neon-white);
   }
-
-  /* Container */
-  main.wrap{max-width:960px;margin:28px auto;padding:20px;position:relative;z-index:1}
-  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-  h1.neon{font-size:48px;margin:0;font-weight:900;letter-spacing:.12em;color:var(--neon-white);text-shadow:0 0 8px rgba(255,255,255,0.9),0 0 16px rgba(255,255,255,0.6)}
-  p.subtitle{margin:0;color:var(--neon-muted);font-weight:600;letter-spacing:.04em}
-
-  /* Earnings / contact */
-  .earnings{margin:18px 0 8px;font-weight:700;color:var(--neon-white);text-shadow:0 0 6px rgba(255,255,255,0.06)}
-  .earnings span{display:block;margin:6px 0}
+  .earnings span{
+    display:block;margin:6px 0;
+  }
   a.email-contact{
-    display:inline-block;background:var(--neon-white);color:#000;padding:10px 18px;border-radius:14px;font-weight:700;text-decoration:none;
-    box-shadow:0 0 18px rgba(255,255,255,0.12);
-    transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+    display:inline-block;background:var(--neon-white);color:#000;padding:12px 24px;
+    border-radius:16px;font-weight:700;text-decoration:none;margin-bottom:28px;
+    box-shadow:0 0 10px var(--neon-white);
   }
-  a.email-contact:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(255,255,255,0.18)}
-
-  /* Stats */
-  section.stats{display:flex;gap:20px;justify-content:center;margin:20px 0 26px;flex-wrap:wrap}
-  .stat-card{background:var(--card-bg);border-radius:16px;padding:18px 20px;width:220px;box-shadow:inset 0 0 20px rgba(255,255,255,0.02);user-select:none}
-  .stat-value{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:900;font-size:40px;color:var(--neon-white);text-shadow:0 0 10px rgba(255,255,255,0.06)}
-  .stat-label{display:block;text-align:center;margin-top:8px;color:var(--neon-muted);font-size:13px}
-
-  /* Star visuals: animated fill */
-  .stars{display:inline-flex;gap:6px;align-items:center}
+  a.email-contact:hover{
+    background:#e6e6e6;
+  }
+  section.stats{
+    display:flex;gap:28px;justify-content:center;margin-bottom:28px;flex-wrap:wrap;
+  }
+  .stat-card{
+    background:var(--card-bg);border-radius:18px;padding:22px 26px;width:180px;
+    box-shadow:0 0 20px rgba(255,255,255,0.04) inset, 0 0 18px rgba(255,255,255,0.03);
+    user-select:none;
+  }
+  .stat-value{
+    font-size:44px;font-weight:900;color:var(--neon-white);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    text-shadow:0 0 14px rgba(255,255,255,0.08);
+  }
+  .stat-label{
+    font-size:13px;color:var(--muted);margin-top:8px;
+  }
+  .stars{
+    display:inline-flex;gap:4px;
+    font-size: var(--star-size);
+    position: relative;
+  }
   .star{
-    font-size:30px;line-height:1;color:var(--neon-muted);transform:translateY(0);transition: color 420ms ease, transform 420ms cubic-bezier(.2,.9,.3,1);
+    color: var(--muted);
     text-shadow:none;
+    cursor: default;
   }
-  .star.filled{color:var(--neon-yellow);text-shadow:0 0 8px rgba(255,216,107,0.85);transform:scale(1.05)}
-  .star.half{
-    /* half by overlay trick */
-    position:relative;
-    color:var(--neon-muted);
+  .star.filled{
+    color: var(--neon-yellow);
+    text-shadow:0 0 6px var(--neon-yellow);
   }
-  .star.half::before{
-    content: "★";
-    position:absolute;
-    left:0;top:0;
-    width:50%;
-    overflow:hidden;
-    color:var(--neon-yellow);
-    text-shadow:0 0 8px rgba(255,216,107,0.85);
-    -webkit-background-clip:text;
-    background-clip:text;
+  .reviews-carousel{
+    max-width:760px;margin:0 auto;background:var(--card-bg);
+    border-radius:16px;padding:20px 24px;
+    box-shadow:0 0 20px rgba(255,255,255,0.04);
+    min-height:120px;font-style:italic;position:relative;
   }
-
-  /* Reviews carousel with fade + slide */
-  .reviews-carousel{max-width:760px;margin:0 auto;background:var(--glass);border-radius:14px;padding:20px 22px;box-shadow:0 6px 30px rgba(0,0,0,0.6);position:relative;min-height:140px;overflow:hidden}
-  .review-inner{position:relative}
-  .review-item{
-    position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transform:translateY(8px) scale(.995);
-    transition:opacity 520ms ease, transform 520ms ease;
-    padding:6px 8px;
+  .review-text{
+    font-size:18px;margin-bottom:10px;line-height:1.35;
   }
-  .review-item.visible{opacity:1;transform:translateY(0) scale(1)}
-  .review-text{font-size:18px;line-height:1.35;margin-bottom:10px;font-style:italic}
-  .review-author{font-weight:800;color:var(--neon-yellow);font-size:14px}
-
-  .based-us{margin-top:14px;font-size:13px;color:var(--neon-white);opacity:.75;font-weight:700;text-shadow:0 0 6px rgba(255,255,255,0.03)}
-
-  /* Services grid */
-  .services-wrap{margin-top:30px;text-align:left}
-  .services-heading{font-size:20px;font-weight:900;margin-bottom:8px}
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .service-card{background:rgba(255 255 255 / 0.03);border-radius:12px;padding:14px;min-height:110px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 18px rgba(0,0,0,0.6)}
-  .service-icon{width:42px;height:42px;flex:0 0 42px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
-  .service-title{font-weight:800;font-size:15px;margin:0 0 6px}
-  .service-desc{font-size:13px;color:var(--neon-muted);margin:0}
-
-  /* Client logo wall */
-  .client-wall{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-  .client-logo{width:84px;height:48px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--neon-muted);font-weight:700;font-size:12px;box-shadow:inset 0 -2px 6px rgba(0,0,0,0.5)}
-  .client-logo svg{width:72px;height:32px;opacity:.9}
-
-  /* CTA footer */
-  footer.cta{margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .cta-left{display:flex;flex-direction:column;align-items:flex-start}
-  .cta-title{font-weight:900;font-size:16px;margin-bottom:4px}
-  .cta-sub{font-size:13px;color:var(--neon-muted)}
-  .cta-actions{display:flex;gap:12px}
-  .btn-ghost{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--neon-white);text-decoration:none;font-weight:700}
-  .btn-primary{padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--neon-yellow), #ffcf7a);color:#000;font-weight:900;text-decoration:none;box-shadow:0 8px 30px rgba(255,216,107,0.12)}
-  .btn-primary:hover{transform:translateY(-3px)}
-
-  /* small pulsating glow on header & buttons */
-  .pulse { animation: pulseGlow 3.6s ease-in-out infinite; }
-  @keyframes pulseGlow{
-    0%{filter:drop-shadow(0 0 6px rgba(255,255,255,0.06))}
-    50%{filter:drop-shadow(0 0 18px rgba(255,255,255,0.12))}
-    100%{filter:drop-shadow(0 0 6px rgba(255,255,255,0.06))}
+  .review-author{
+    font-size:14px;font-weight:700;color:var(--neon-yellow);
   }
-
-  /* Responsive adjustments */
+  .based-us{
+    margin-top:12px;font-size:13px;color:var(--neon-white);
+    opacity:.7;font-weight:600;letter-spacing:.03em;
+    text-shadow:0 0 4px rgba(255,255,255,0.04);
+  }
+  /* Services section */
+  .services-wrap{
+    margin-top:30px;text-align:left;
+  }
+  .services-heading{
+    font-size:20px;font-weight:900;letter-spacing:.08em;margin-bottom:14px;
+    color:var(--neon-white);
+    text-shadow:0 0 8px rgba(255,255,255,0.04);
+  }
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  }
+  .service-card{
+    background:rgba(255 255 255 / 0.03);border-radius:12px;padding:14px 16px;
+    color:var(--neon-white);box-shadow:0 0 18px rgba(255,255,255,0.02);
+    min-height:110px;display:flex;flex-direction:column;justify-content:center;
+    position: relative;
+    padding-left: 44px;
+  }
+  .service-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    fill: var(--neon-yellow);
+    filter: drop-shadow(0 0 4px var(--neon-yellow));
+  }
+  .service-title{
+    font-weight:800;margin-bottom:8px;font-size:15px;
+  }
+  .service-desc{
+    font-size:13px;color:var(--muted);line-height:1.25;
+  }
+  /* accent pill for premium feel */
+  .premium-pill{
+    display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;
+    background:linear-gradient(90deg, rgba(255,216,107,0.12), rgba(255,216,107,0.06));
+    color:var(--neon-yellow);font-weight:700;font-size:12px;
+  }
+  /* Footer */
+  footer{
+    background: var(--card-bg);
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--neon-white);
+    box-shadow: 0 0 20px rgba(255,255,255,0.04);
+    margin-top: 48px;
+    border-radius: 12px;
+    user-select: none;
+  }
+  footer a{
+    color: var(--neon-yellow);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  footer a:hover{
+    text-decoration: underline;
+  }
+  /* Responsive */
   @media (max-width:980px){
-    .services-grid{grid-template-columns:repeat(2,1fr)}
-    .stat-card{width:48%}
+    .services-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+    main.wrap{
+      padding:0 18px;
+    }
   }
-  @media (max-width:680px){
-    h1.neon{font-size:34px}
-    .services-grid{grid-template-columns:1fr}
-    .stat-card{width:100%}
-    .review-text{font-size:15px}
-    .client-logo{width:64px;height:40px}
-    .service-icon{width:40px;height:40px}
-    footer.cta{flex-direction:column;align-items:flex-start;gap:10px}
+  @media (max-width:560px){
+    h1.neon{
+      font-size:40px;
+    }
+    .services-grid{
+      grid-template-columns:1fr;
+    }
+    .stat-card{
+      width:100%;max-width:380px;
+    }
+    .stat-value{
+      font-size:36px;
+    }
+    .star{
+      font-size:22px;
+    }
+    .review-text{
+      font-size:16px;
+    }
   }
 </style>
 </head>
 <body>
 <main class="wrap" role="main" aria-label="MZ Services main content">
+  <h1 class="neon" aria-label="M Z Services title">MZ Services</h1>
+  <p class="subtitle">We do your work for you</p>
 
-  <!-- Header -->
-  <header class="top" role="banner">
-    <div>
-      <h1 class="neon pulse" aria-label="MZ Services">MZ Services</h1>
-      <p class="subtitle">We do your work for you</p>
-    </div>
-    <div style="text-align:right">
-      <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com" aria-label="Email business inquiry">business.inquiry.mrcactuz@gmail.com</a>
-    </div>
-  </header>
-
-  <div class="earnings" aria-hidden="false">
+  <div class="earnings" aria-label="Earnings and hire">
     <span><strong>$9.2 million</strong> earned</span>
     <span><strong>Hire us for anything</strong></span>
   </div>
 
-  <!-- Stats -->
+  <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com" aria-label="Send email to business inquiry">
+    business.inquiry.mrcactuz@gmail.com
+  </a>
+
   <section class="stats" aria-label="Review statistics">
-    <div class="stat-card" role="region" aria-live="polite">
-      <div class="stat-value" id="avgStars">
-        <span id="avgRatingValue">—</span>
-        <span class="stars" aria-hidden="false" aria-label="Average star rating"></span>
+    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
+      <div class="stat-value" id="avgStars" aria-label="Average rating stars">
+        <span id="avgRatingValue" style="font-size:36px; margin-right:12px;">—</span>
+        <span class="stars" aria-hidden="true" id="animatedStars"></span>
       </div>
       <div class="stat-label">Average Rating</div>
     </div>
 
-    <div class="stat-card" role="region" aria-live="polite">
+    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
       <div class="stat-value" id="reviewCount">—</div>
       <div class="stat-label">Total Reviews</div>
     </div>
   </section>
 
-  <!-- Reviews carousel -->
-  <section class="reviews-carousel" role="region" aria-label="Customer reviews">
-    <div class="review-inner" id="reviewInner" aria-live="polite">
-      <!-- JS will populate review items here -->
-    </div>
+  <section class="reviews-carousel" role="region" aria-live="polite" aria-atomic="true" aria-label="Customer reviews carousel">
+    <div class="review-text" id="reviewText">Loading reviews...</div>
+    <div class="review-author" id="reviewAuthor"></div>
     <div class="based-us">Based in the US, security guaranteed.</div>
   </section>
 
-  <!-- Client logo wall -->
-  <div style="margin-top:18px">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div style="font-weight:900">Trusted by</div>
-      <div style="color:var(--neon-muted);font-size:13px">Selected partners & past clients (anonymized)</div>
-    </div>
-    <div class="client-wall" aria-hidden="false" role="list">
-      <!-- placeholder logos (replace with real images or SVGs if available) -->
-      <div class="client-logo" role="listitem"><svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="40" fill="#1b1b1b"/><text x="50" y="25" text-anchor="middle" font-size="14" fill="#bfbfbf" font-family="Arial">Client A</text></svg></div>
-      <div class="client-logo" role="listitem"><svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="40" fill="#141414"/><text x="50" y="25" text-anchor="middle" font-size="14" fill="#bfbfbf" font-family="Arial">Client B</text></svg></div>
-      <div class="client-logo" role="listitem"><svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="40" fill="#0f0f0f"/><text x="50" y="25" text-anchor="middle" font-size="14" fill="#bfbfbf" font-family="Arial">Client C</text></svg></div>
-      <div class="client-logo" role="listitem"><svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="40" fill="#161616"/><text x="50" y="25" text-anchor="middle" font-size="14" fill="#bfbfbf" font-family="Arial">Client D</text></svg></div>
-      <div class="client-logo" role="listitem"><svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="40" fill="#191919"/><text x="50" y="25" text-anchor="middle" font-size="14" fill="#bfbfbf" font-family="Arial">Client E</text></svg></div>
-    </div>
-  </div>
-
   <!-- Premium Services -->
   <div class="services-wrap" aria-label="Premium services">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
       <div>
         <div class="services-heading">Premium Services</div>
-        <div style="color:var(--neon-muted);font-size:13px">Elite, high-value projects. Confidential engagements available.</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:8px">Elite, high-value projects. Confidential engagements available.</div>
       </div>
-      <div class="premium-pill" style="color:var(--neon-yellow);font-weight:800">High-end • Enterprise</div>
+      <div class="premium-pill" aria-hidden="true">High-end • Enterprise</div>
     </div>
 
-    <div class="services-grid" role="list" aria-label="List of premium services">
-      <!-- Service 1 -->
+    <div class="services-grid" role="list">
+
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- engine icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="#ffd86b" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Elite Software & Game Engine Development</div>
-          <div class="service-desc">Custom engines and systems for AAA games and enterprise platforms — optimized for performance and scale.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 1L3 5v6c0 5 3.7 9.7 9 11 5.3-1.3 9-6 9-11V5l-9-4zM12 9.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/>
+        </svg>
+        <div class="service-title">Elite Software & Game Engine Development</div>
+        <div class="service-desc">Custom engines and scalable systems for AAA games or enterprise platforms — optimized for performance, reliability, and security.</div>
       </div>
 
-      <!-- Service 2 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- rocket icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20c0-4 6-8 6-8s4 0 8-4" stroke="#ffd86b" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Brand Domination Campaigns</div>
-          <div class="service-desc">Full-funnel marketing to dramatically increase sales and market share: influencer strategy, paid media, viral creative.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M2 12l5 5 9-9-1.5-1.5L7 14l-3-3L2 12zM19 5v14h2V5h-2zM11 3h2v18h-2V3z"/>
+        </svg>
+        <div class="service-title">Brand Domination Campaigns</div>
+        <div class="service-desc">Full-funnel marketing to dramatically increase sales and market share: influencer strategy, paid media orchestration, viral creative.</div>
       </div>
 
-      <!-- Service 3 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- shield icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 3v5c0 5-3 9-7 11-4-2-7-6-7-11V6l7-3z" stroke="#ffd86b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Corporate Security & Data Protection</div>
-          <div class="service-desc">Infrastructure hardening, incident response, and 24/7 monitoring for high-value assets.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 17a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-5-8v2H5v7h14v-7h-2v-2a5 5 0 0 0-10 0zM12 3a7 7 0 0 1 7 7v3H5V10a7 7 0 0 1 7-7z"/>
+        </svg>
+        <div class="service-title">Corporate Security & Data Protection</div>
+        <div class="service-desc">End-to-end security: infrastructure hardening, secure architecture, incident response planning and monitoring for high-value assets.</div>
       </div>
 
-      <!-- Service 4 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- box icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Confidential “Black Box” Solutions</div>
-          <div class="service-desc">Discrete, results-focused projects executed with minimal footprint and strict confidentiality.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M19 6v12H5V6h14m0-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+        </svg>
+        <div class="service-title">Confidential “Black Box” Solutions</div>
+        <div class="service-desc">Discrete, results-focused technical projects executed with minimal footprint and strict confidentiality protocols.</div>
       </div>
 
-      <!-- Service 5 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- ai icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">AI-Powered Business Automation</div>
-          <div class="service-desc">Custom AI and automation systems to scale complex operations across enterprises.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 12l2-2 7 7 7-7 2 2-9 9z"/>
+        </svg>
+        <div class="service-title">AI-Powered Business Automation</div>
+        <div class="service-desc">Custom AI systems to automate complex operations, drive efficiencies, and scale capabilities across large organizations.</div>
       </div>
 
-      <!-- Service 6 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- rescue icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v6M5 10l7 7 7-7" stroke="#ffd86b" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Crisis Recovery & Digital Rescue</div>
-          <div class="service-desc">Emergency recovery, platform rebuilds, and rapid operational restoration under tight SLAs.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 5v14m7-7H5"/>
+        </svg>
+        <div class="service-title">Crisis Recovery & Digital Rescue</div>
+        <div class="service-desc">Emergency recovery for critical systems — data restoration, platform rebuilds, and fast operational recovery under tight SLAs.</div>
       </div>
 
-      <!-- Service 7 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- globe icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M2 12h20" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">International Market Penetration</div>
-          <div class="service-desc">Localization, region-specific growth strategies, and ad ops to launch brands globally.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M10 5l5 7-5 7"/>
+        </svg>
+        <div class="service-title">International Market Penetration</div>
+        <div class="service-desc">Region-specific growth strategies, localization, and ad operations to launch and scale brands across new global markets.</div>
       </div>
 
-      <!-- Service 8 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- blockchain icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="6" height="6" stroke="#ffd86b" stroke-width="1.2"/><rect x="14" y="14" width="6" height="6" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Custom Blockchain & FinTech Systems</div>
-          <div class="service-desc">Secure crypto platforms, smart contracts, and institutional-grade payment systems.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm0 16a5 5 0 1 1 5-5 5 5 0 0 1-5 5z"/>
+        </svg>
+        <div class="service-title">Custom Blockchain & FinTech Systems</div>
+        <div class="service-desc">Secure crypto platforms, smart contracts, and payment gateways built for institutional use and regulatory considerations.</div>
       </div>
 
-      <!-- Service 9 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- cart icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h2l1 10h12l1-6H6" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">High-Volume E-Commerce Scaling</div>
-          <div class="service-desc">Automated fulfillment, high-converting funnels, and infrastructure for large-volume retailers.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M21 6v12H3V6h18zm-7 9h-2v-2h2zm0-4h-2V7h2z"/>
+        </svg>
+        <div class="service-title">High-Volume E-Commerce Scaling</div>
+        <div class="service-desc">Turnstores into enterprise operations: automated fulfillment, high-converting funnels, and growth engineering for large volume sales.</div>
       </div>
 
-      <!-- Service 10 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- partnership icon -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 21v-6M18 21v-6" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Strategic Long-Term Partnerships</div>
-          <div class="service-desc">CTO-level consulting, product strategy, and engineering partnerships for sustained growth.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2l4 4-4 4-4-4 4-4zm0 16l4 4-4 4-4-4 4-4z"/>
+        </svg>
+        <div class="service-title">Strategic Long-Term Partnerships</div>
+        <div class="service-desc">Ongoing CTO-level support, product strategy, and engineering partnerships for sustained growth and technical leadership.</div>
       </div>
 
-      <!-- Service 11 -->
       <div class="service-card" role="listitem">
-        <div class="service-icon" aria-hidden="true">
-          <!-- covert icon (shield+lock) -->
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 3v4c0 5-3 9-7 11-4-2-7-6-7-11V6l7-3z" stroke="#ffd86b" stroke-width="1.2"/><rect x="9" y="10" width="6" height="5" rx="1.2" stroke="#ffd86b" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <div class="service-title">Authorized Covert Technical Operations</div>
-          <div class="service-desc">Authorized penetration testing, secure forensic analysis, and private-coded solutions under NDA & legal permissions.</div>
-        </div>
+        <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 0 0-7 17l7-7 7 7a10 10 0 0 0-7-17z"/>
+        </svg>
+        <div class="service-title">Authorized Covert Technical Operations</div>
+        <div class="service-desc">Highly specialized, confidential technical services (authorized penetration testing, secure forensic analysis, and private-coded solutions) conducted legally and ethically under NDA and explicit permission.</div>
       </div>
 
     </div>
   </div>
-
-  <!-- Footer CTA -->
-  <footer class="cta" role="contentinfo" aria-label="Contact call to action">
-    <div class="cta-left">
-      <div class="cta-title">Interested in an elite engagement?</div>
-      <div class="cta-sub">Available for select high-value projects. Confidential consultations available.</div>
-    </div>
-    <div class="cta-actions">
-      <a class="btn-ghost" href="mailto:business.inquiry.mrcactuz@gmail.com">Email Us</a>
-      <a class="btn-primary" href="mailto:business.inquiry.mrcactuz@gmail.com?subject=Request%20Free%20Consultation">Request Free Consultation</a>
-    </div>
-  </footer>
-
 </main>
 
+<footer role="contentinfo" aria-label="Contact and availability">
+  <p>Contact us: <a href="mailto:business.inquiry.mrcactuz@gmail.com">business.inquiry.mrcactuz@gmail.com</a></p>
+  <p>Available 24/7 — Free Consultation</p>
+</footer>
+
 <script>
-  /* -------------------------
-     Reviews & rating data
-     ------------------------- */
+  // Reviews data
   const reviews = [
     { text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%", author: "CryptoPAC", stars: 5 },
     { text: "Did everything promised quickly and efficiently, can’t wait to work with him more.", author: "SocialPulse", stars: 5 },
@@ -387,114 +338,69 @@
     { text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.", author: "RipperLA", stars: 5 },
     { text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible.", author: "HeuxHelp", stars: 4.8 }
   ];
+
   const averageRating = 4.9;
   const totalReviews = "1.2k";
 
-  // DOM references
   const avgRatingValue = document.getElementById('avgRatingValue');
-  const starsContainer = document.querySelector('#avgStars .stars');
+  const animatedStars = document.getElementById('animatedStars');
   const reviewCountEl = document.getElementById('reviewCount');
-  const reviewInner = document.getElementById('reviewInner');
+  const reviewTextEl = document.getElementById('reviewText');
+  const reviewAuthorEl = document.getElementById('reviewAuthor');
 
-  // Render numeric values
-  avgRatingValue.textContent = averageRating.toFixed(1);
+  // Update numeric displays
+  avgRatingValue.textContent = ''; // we hide the number to emphasize stars
   reviewCountEl.textContent = totalReviews;
 
-  // Build 5 star elements, animate fill
-  function buildStars(rating){
-    starsContainer.innerHTML = '';
-    const full = Math.floor(rating);
-    const hasHalf = (rating - full) >= 0.5;
-    for(let i=0;i<5;i++){
-      const span = document.createElement('span');
-      span.className = 'star';
-      // half star styling
-      if(i < full){
-        // add delay so fill animates left-to-right
-        setTimeout(()=> span.classList.add('filled'), 120 * i);
-        span.textContent = '★';
-      } else if(i === full && hasHalf){
-        // half star - show base star and overlay half via CSS
-        span.classList.add('half');
-        setTimeout(()=> span.classList.add('filled'), 120 * i);
-        span.textContent = '★';
-      } else {
-        // empty star
-        span.textContent = '★';
-        // animate slightly later for subtle bounce
-        setTimeout(()=> span.style.transform = 'translateY(0)', 120 * i);
-      }
-      starsContainer.appendChild(span);
+  // Create star elements for animation, initially all empty
+  function createStarElements(){
+    animatedStars.innerHTML = '';
+    for(let i=0; i<5; i++){
+      const star = document.createElement('span');
+      star.classList.add('star');
+      star.textContent = '★';
+      animatedStars.appendChild(star);
     }
   }
 
-  buildStars(averageRating);
+  createStarElements();
 
-  /* -------------------------
-     Reviews carousel with fade/slide
-     ------------------------- */
-  let current = 0;
-  let reviewNodes = [];
-
-  function createReviewNode(review, idx){
-    const item = document.createElement('div');
-    item.className = 'review-item';
-    item.setAttribute('data-index', idx);
-    item.innerHTML = `<div class="review-text">"${escapeHtml(review.text)}"</div><div class="review-author">— ${escapeHtml(review.author)}</div>`;
-    return item;
-  }
-
-  function escapeHtml(s){
-    return s.replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});
-  }
-
-  // populate review nodes
-  reviews.forEach((r,i)=>{
-    const node = createReviewNode(r,i);
-    reviewInner.appendChild(node);
-    reviewNodes.push(node);
-  });
-
-  // show first item
-  function showReview(index){
-    reviewNodes.forEach((n,i)=>{
-      if(i === index){
-        n.classList.add('visible');
-      } else {
-        n.classList.remove('visible');
+  // Animate stars filling gold neon up to rating
+  function animateStars(rating){
+    const stars = animatedStars.children;
+    let current = 0;
+    let fillInterval = setInterval(() => {
+      if(current >= 5){
+        clearInterval(fillInterval);
+        return;
       }
-    });
+      const star = stars[current];
+      if(current < Math.floor(rating)){
+        star.classList.add('filled');
+      } else if (current === Math.floor(rating) && rating % 1 >= 0.5){
+        star.classList.add('filled');
+        // For half star effect, you can add a special style or skip for simplicity
+      }
+      current++;
+    }, 400);
   }
 
-  // initial
-  showReview(0);
-  // cycle with fade/slide
-  setInterval(()=>{
-    current = (current + 1) % reviews.length;
-    showReview(current);
-  }, 5200);
+  animateStars(averageRating);
 
-  /* -------------------------
-     Accessibility: reduce motion preference
-     ------------------------- */
-  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(media.matches){
-    // disable animated star fill quickly & transitions
-    document.querySelectorAll('.star').forEach(s => s.classList.add('filled'));
-    document.querySelectorAll('.review-item').forEach(n => n.style.transition = 'none');
+  // Rotating reviews
+  let idx = 0;
+  function showReview(i){
+    const r = reviews[i];
+    reviewTextEl.textContent = r.text;
+    reviewAuthorEl.textContent = `— ${r.author}`;
+  }
+  function cycleReviews(){
+    showReview(idx);
+    idx = (idx + 1) % reviews.length;
   }
 
-  /* -------------------------
-     Small finishing touches
-     ------------------------- */
-  // Make header glow slightly on load
-  window.addEventListener('load', ()=>{
-    const header = document.querySelector('.neon');
-    header.classList.add('pulse');
-    // ensure visible first review
-    showReview(0);
-  });
-
+  cycleReviews();
+  setInterval(cycleReviews, 5000);
 </script>
 </body>
 </html>
