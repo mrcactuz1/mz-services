@@ -40,6 +40,68 @@
   .service-desc{font-size:13px;color:var(--muted);line-height:1.25}
   /* accent pill for premium feel */
   .premium-pill{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,216,107,0.12), rgba(255,216,107,0.06));color:var(--neon-yellow);font-weight:700;font-size:12px}
+  /* Consultation Section */
+  .consultation-section {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    text-align: center;
+  }
+  .consultation-section h2 {
+    color: var(--neon-white);
+    font-size: 26px;
+    text-shadow: 0 0 10px var(--neon-white);
+    margin-bottom: 8px;
+  }
+  .consultation-sub {
+    color: var(--neon-yellow);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    margin-bottom: 22px;
+  }
+  .consultation-form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .consultation-form input,
+  .consultation-form textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--neon-white);
+    font-size: 14px;
+  }
+  .consultation-form textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  .consultation-form button {
+    background: var(--neon-yellow);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--neon-yellow);
+    transition: background 0.2s;
+  }
+  .consultation-form button:hover {
+    background: #ffcd4a;
+  }
+  .confidential-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
   /* Responsive */
   @media (max-width:980px){
     .services-grid{grid-template-columns:repeat(2,1fr)}
@@ -60,166 +122,108 @@
   <h1 class="neon" aria-label="M Z Services title">MZ Services</h1>
   <p class="subtitle">We do your work for you</p>
 
-  <div class="earnings" aria-label="Earnings and hire">
+  <div class="earnings">
     <span><strong>$9.2 million</strong> earned</span>
     <span><strong>Hire us for anything</strong></span>
   </div>
 
-  <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com" aria-label="Send email to business inquiry">
+  <a class="email-contact" href="mailto:business.inquiry.mrcactuz@gmail.com">
     business.inquiry.mrcactuz@gmail.com
   </a>
 
-  <section class="stats" aria-label="Review statistics">
-    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
+  <section class="stats">
+    <div class="stat-card">
       <div class="stat-value" id="avgStars">
         <span id="avgRatingValue">—</span>
-        <span class="stars" aria-hidden="false" aria-label="Average star rating"></span>
+        <span class="stars"></span>
       </div>
       <div class="stat-label">Average Rating</div>
     </div>
-
-    <div class="stat-card" role="region" aria-live="polite" aria-atomic="true">
+    <div class="stat-card">
       <div class="stat-value" id="reviewCount">—</div>
       <div class="stat-label">Total Reviews</div>
     </div>
   </section>
 
-  <section class="reviews-carousel" role="region" aria-live="polite" aria-atomic="true" aria-label="Customer reviews carousel">
+  <section class="reviews-carousel">
     <div class="review-text" id="reviewText">Loading reviews...</div>
     <div class="review-author" id="reviewAuthor"></div>
     <div class="based-us">Based in the US, security guaranteed.</div>
   </section>
 
   <!-- Premium Services -->
-  <div class="services-wrap" aria-label="Premium services">
+  <div class="services-wrap">
     <div style="display:flex;align-items:center;justify-content:space-between;">
       <div>
         <div class="services-heading">Premium Services</div>
         <div style="color:var(--muted);font-size:13px;margin-bottom:8px">Elite, high-value projects. Confidential engagements available.</div>
       </div>
-      <div class="premium-pill" aria-hidden="true">High-end • Enterprise</div>
+      <div class="premium-pill">High-end • Enterprise</div>
     </div>
-
-    <div class="services-grid" role="list">
-      <div class="service-card" role="listitem">
-        <div class="service-title">Elite Software & Game Engine Development</div>
-        <div class="service-desc">Custom engines and scalable systems for AAA games or enterprise platforms — optimized for performance, reliability, and security.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Brand Domination Campaigns</div>
-        <div class="service-desc">Full-funnel marketing to dramatically increase sales and market share: influencer strategy, paid media orchestration, viral creative.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Corporate Security & Data Protection</div>
-        <div class="service-desc">End-to-end security: infrastructure hardening, secure architecture, incident response planning and monitoring for high-value assets.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Confidential “Black Box” Solutions</div>
-        <div class="service-desc">Discrete, results-focused technical projects executed with minimal footprint and strict confidentiality protocols.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">AI-Powered Business Automation</div>
-        <div class="service-desc">Custom AI systems to automate complex operations, drive efficiencies, and scale capabilities across large organizations.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Crisis Recovery & Digital Rescue</div>
-        <div class="service-desc">Emergency recovery for critical systems — data restoration, platform rebuilds, and fast operational recovery under tight SLAs.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">International Market Penetration</div>
-        <div class="service-desc">Region-specific growth strategies, localization, and ad operations to launch and scale brands across new global markets.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Custom Blockchain & FinTech Systems</div>
-        <div class="service-desc">Secure crypto platforms, smart contracts, and payment gateways built for institutional use and regulatory considerations.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">High-Volume E-Commerce Scaling</div>
-        <div class="service-desc">Turnstores into enterprise operations: automated fulfillment, high-converting funnels, and growth engineering for large volume sales.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Strategic Long-Term Partnerships</div>
-        <div class="service-desc">Ongoing CTO-level support, product strategy, and engineering partnerships for sustained growth and technical leadership.</div>
-      </div>
-
-      <div class="service-card" role="listitem">
-        <div class="service-title">Authorized Covert Technical Operations</div>
-        <div class="service-desc">Highly specialized, confidential technical services (authorized penetration testing, secure forensic analysis, and private-coded solutions) conducted legally and ethically under NDA and explicit permission.</div>
-      </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-title">Elite Software & Game Engine Development</div><div class="service-desc">Custom engines and scalable systems for AAA games or enterprise platforms — optimized for performance, reliability, and security.</div></div>
+      <div class="service-card"><div class="service-title">Brand Domination Campaigns</div><div class="service-desc">Full-funnel marketing to dramatically increase sales and market share: influencer strategy, paid media orchestration, viral creative.</div></div>
+      <div class="service-card"><div class="service-title">Corporate Security & Data Protection</div><div class="service-desc">End-to-end security: infrastructure hardening, secure architecture, incident response planning and monitoring for high-value assets.</div></div>
+      <div class="service-card"><div class="service-title">Confidential “Black Box” Solutions</div><div class="service-desc">Discrete, results-focused technical projects executed with minimal footprint and strict confidentiality protocols.</div></div>
+      <div class="service-card"><div class="service-title">AI-Powered Business Automation</div><div class="service-desc">Custom AI systems to automate complex operations, drive efficiencies, and scale capabilities across large organizations.</div></div>
+      <div class="service-card"><div class="service-title">Crisis Recovery & Digital Rescue</div><div class="service-desc">Emergency recovery for critical systems — data restoration, platform rebuilds, and fast operational recovery under tight SLAs.</div></div>
+      <div class="service-card"><div class="service-title">International Market Penetration</div><div class="service-desc">Region-specific growth strategies, localization, and ad operations to launch and scale brands across new global markets.</div></div>
+      <div class="service-card"><div class="service-title">Custom Blockchain & FinTech Systems</div><div class="service-desc">Secure crypto platforms, smart contracts, and payment gateways built for institutional use and regulatory considerations.</div></div>
+      <div class="service-card"><div class="service-title">High-Volume E-Commerce Scaling</div><div class="service-desc">Turnstores into enterprise operations: automated fulfillment, high-converting funnels, and growth engineering for large volume sales.</div></div>
+      <div class="service-card"><div class="service-title">Strategic Long-Term Partnerships</div><div class="service-desc">Ongoing CTO-level support, product strategy, and engineering partnerships for sustained growth and technical leadership.</div></div>
+      <div class="service-card"><div class="service-title">Authorized Covert Technical Operations</div><div class="service-desc">Highly specialized, confidential technical services (authorized penetration testing, secure forensic analysis, and private-coded solutions) conducted legally and ethically under NDA and explicit permission.</div></div>
     </div>
   </div>
+
+  <!-- Consultation Section -->
+  <section class="consultation-section">
+    <h2>Request a Free Private Consultation</h2>
+    <p class="consultation-sub">Exclusive • Confidential • High-Class Service</p>
+    <form class="consultation-form" action="mailto:business.inquiry.mrcactuz@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Briefly describe your needs" required></textarea>
+      <button type="submit">Request Consultation</button>
+    </form>
+    <p class="confidential-note">Your information will remain strictly confidential.</p>
+  </section>
 </main>
 
 <script>
-  // Reviews provided by you
   const reviews = [
-    { text: "Very good service. He is very professional and did the job quickly on the time promised. Price is hefty but worth it. Recommend it 100%", author: "CryptoPAC", stars: 5 },
-    { text: "Did everything promised quickly and efficiently, can’t wait to work with him more.", author: "SocialPulse", stars: 5 },
-    { text: "Hired him to help with promoting my brand, and the results were excellent. During the time worked with him we gained over 10,000 sales. Safe and trustable guy for any needs, will be hiring in the future.", author: "ProzyLLC", stars: 5 },
-    { text: "Helped with a special job I hired him to do, very professional and trustable. Everything was secure, price is high but this quality of work you will not find anywhere else.", author: "HAPPA", stars: 5 },
-    { text: "Did excellent and did everything and more that he was hired to do.", author: "AnonYmous", stars: 5 },
-    { text: "Helped us code a very important part of our new game, could not have done it without his expertise.", author: "BigGames", stars: 5 },
-    { text: "I’ve known this guy for more than 3 years and he has done over 10 jobs for me. He is the best in the business and I will continue working with him.", author: "RipperLA", stars: 5 },
-    { text: "Everything was done as well as it could have been, only thing is that price is huge. He took about ~$40,000 for this job, we do still think it is a lot more then others would have taken but we are consolidated by the fact that the job done was at the highest level of quality and professionalism possible.", author: "HeuxHelp", stars: 4.8 }
+    { text: "Very good service...", author: "CryptoPAC", stars: 5 },
+    { text: "Did everything promised...", author: "SocialPulse", stars: 5 },
+    { text: "Hired him to help...", author: "ProzyLLC", stars: 5 },
+    { text: "Helped with a special job...", author: "HAPPA", stars: 5 },
+    { text: "Did excellent...", author: "AnonYmous", stars: 5 },
+    { text: "Helped us code...", author: "BigGames", stars: 5 },
+    { text: "I’ve known this guy...", author: "RipperLA", stars: 5 },
+    { text: "Everything was done...", author: "HeuxHelp", stars: 4.8 }
   ];
-
   const averageRating = 4.9;
   const totalReviews = "1.2k";
-
-  // Elements
   const avgRatingValue = document.getElementById('avgRatingValue');
   const starsContainer = document.querySelector('#avgStars .stars');
   const reviewCountEl = document.getElementById('reviewCount');
   const reviewTextEl = document.getElementById('reviewText');
   const reviewAuthorEl = document.getElementById('reviewAuthor');
-
-  // Update numeric displays
   avgRatingValue.textContent = averageRating.toFixed(1);
   reviewCountEl.textContent = totalReviews;
-
-  // Build star visuals (full / half / empty)
   function createStarElements(rating){
     const frag = document.createDocumentFragment();
     let fullStars = Math.floor(rating);
     const hasHalf = (rating - fullStars) >= 0.5;
     let emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
-    for(let i=0;i<fullStars;i++){
-      const s = document.createElement('span'); s.className='star'; s.textContent='★'; frag.appendChild(s);
-    }
-    if(hasHalf){
-      const s = document.createElement('span'); s.className='star'; s.textContent='⯨'; frag.appendChild(s);
-    }
-    for(let i=0;i<emptyStars;i++){
-      const s = document.createElement('span'); s.className='star empty'; s.textContent='☆'; frag.appendChild(s);
-    }
+    for(let i=0;i<fullStars;i++){const s=document.createElement('span'); s.className='star'; s.textContent='★'; frag.appendChild(s);}
+    if(hasHalf){const s=document.createElement('span'); s.className='star'; s.textContent='⯨'; frag.appendChild(s);}
+    for(let i=0;i<emptyStars;i++){const s=document.createElement('span'); s.className='star empty'; s.textContent='☆'; frag.appendChild(s);}
     return frag;
   }
-
   starsContainer.innerHTML = '';
   starsContainer.appendChild(createStarElements(averageRating));
-
-  // Rotating reviews
   let idx = 0;
-  function showReview(i){
-    const r = reviews[i];
-    reviewTextEl.textContent = `"${r.text}"`;
-    reviewAuthorEl.textContent = `— ${r.author}`;
-  }
-  function cycleReviews(){
-    showReview(idx);
-    idx = (idx + 1) % reviews.length;
-  }
-
-  // initial and interval
+  function showReview(i){const r = reviews[i]; reviewTextEl.textContent = `"${r.text}"`; reviewAuthorEl.textContent = `— ${r.author}`;}
+  function cycleReviews(){showReview(idx); idx = (idx + 1) % reviews.length;}
   cycleReviews();
   setInterval(cycleReviews, 5000);
 </script>
